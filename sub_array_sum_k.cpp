@@ -4,10 +4,11 @@
 using namespace std;
 int main(){
     vector<int>arr={1,2,3};
+    unordered_map<int,int>map;
     int n=arr.size();
     int count=0;
     vector<int>pre_fix(n);
-    unordered_map<int,int>map;
+    
     pre_fix[0]=arr[0];    
     int k=3;
     for(int i=1;i<n;i++){

@@ -1,0 +1,40 @@
+This is file where i explain how i solve this leetcode 50. Pow(x,n) Problem
+
+Give : 
+  double x -> its may positive or negative 
+  int n-> its positive , zero , negative
+
+To Find :
+  x^n
+
+Approch :
+   Recursion 
+
+Explanation :
+  1. If n==0 it will return 1. becz  x^0=1
+  2. If n<0 is like x^-n = 1/x^ -n .
+  3. If n>0 then simply x^n. or we say we multiplx x for n times 
+
+How it Work :
+  power(2,3)
+  2*power(2,2)
+  2*2*power(2,1)
+  2*2*2*1
+  = 8
+Now while Solving x^n we might get limitation error to fix this we do some simple operation :
+  For n is even :
+    x^n = (x^(n/2)) * (x^(n/2))
+    example : 
+      x = 2, n = 4
+      2^4 = (2^2) * (2^2) = 4 * 4 = 16
+
+  For n is odd:
+    x^n = x * (x^(n/2)) * (x^(n/2))
+    Example :
+      x = 2, n = 5
+      2^5 = 2 * (2^2) * (2^2)
+      = 2 * 4 * 4 = 32
+
+
+
+

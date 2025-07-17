@@ -1,37 +1,32 @@
 // Q] Rearrange Array Element by Sign
-//Type1 
+//Working .....
 class Solution {
 public:
-    vector<int> rearrangeArray(vector<int>& nums) {
-        vector<int>arr1;
-        vector<int>arr2;
-        vector<int>arr3;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]>0){
-                arr1.push_back(nums[i]);
-            }
-            else{
-                arr2.push_back(nums[i]);
-            }
-        }
-        int i=0;
-        int j=0;
+     vector<int>arr;
 
-        while(i<arr1.size() && j<arr2.size()){
-            arr3.push_back(arr1[i]);
-            i++;
-            arr3.push_back(arr2[j]);
-            j++;
+         int i=0;
+         int j=0;
+
+         while(i!=nums.size() || j!=nums.size()){
+             if(nums[i]>0){
+                 arr.push_back(nums[i]);
+                 i++;
+                 if(nums[i]<0){
+                     j=i;
+                 }
+             }
+
+                 if(nums[j]<0){
+                 arr.push_back(nums[j]);
+               j++;
+                 if(nums[j]>0){
+                     i=j;
+                 }
+
+               
+             }
         }
-        while(i<arr1.size()){
-            arr3.push_back(arr1[i]);
-            i++;
-        }
-        while(j<arr2.size()){
-            arr3.push_back(arr2[j]);
-            j++;
-        }
-        return arr3;
+         return arr;
         
     }
 };

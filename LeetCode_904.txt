@@ -1,0 +1,57 @@
+Problem Recap :
+You have an array fruits, where each integer represents a type of fruit tree in a row. You want to pick fruits using two baskets — each basket can hold only one type of fruit but can hold unlimited amounts of that type.
+
+Goal: Find the length of the longest contiguous subarray that contains at most two distinct fruit types.
+
+Key Idea :
+This is a classic sliding window problem:
+
+We want the longest window (contiguous subarray) that contains at most two distinct fruit types.
+
+The window must be contiguous and can slide over the array.
+
+When the window contains more than 2 types, we shrink it from the left until it becomes valid again.
+
+How the Sliding Window Works :
+Two pointers: i (left) and j (right)
+j moves forward to expand the window (try adding fruits).
+
+i moves forward to shrink the window (remove fruits from the left).
+
+What to track?
+We need to know how many fruit types are in the current window.
+
+We use a map (hash map) to count the occurrences of each fruit type in the current window.
+
+Code Explanation :
+while (j < fruits.size()) {
+    map[fruits[j]]++;        // Add current fruit to map
+    if (map.size() <= 2) {   // If we have <= 2 types, window is valid
+        maxlen = max(maxlen, j - i + 1);  // Update max window size
+        j++;                 // Expand window to right
+    } else {
+        // More than 2 fruit types, shrink window from left
+        while (map.size() > 2) {
+            map[fruits[i]]--;         // Remove one fruit from left
+            if (map[fruits[i]] == 0) {
+                map.erase(fruits[i]); // Remove fruit type if none left
+            }
+            i++;                     // Move left pointer forward
+        }
+        j++; // Move right pointer forward after shrinking window
+    }
+}
+
+
+Summary : 
+The problem reduces to finding the longest subarray with at most 2 distinct elements.
+
+Use two pointers to represent the sliding window.
+
+Use a hash map to count fruit types inside the window.
+
+Expand window by moving j, shrink by moving i when invalid.
+
+Keep track of max window length.
+
+Time complexity is O(n), space O(1) (since at most 3 keys in map).

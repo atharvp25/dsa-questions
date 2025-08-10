@@ -1,0 +1,57 @@
+Problem Statement
+We are given a positive integer n. We can reorder its digits in any order (but the number cannot have leading zeros).
+We need to determine whether it is possible to reorder the digits of n so that the resulting number is a power of two.
+
+Return:
+
+  1.true → if such a reordering exists
+
+  2.false → otherwise
+---------------------------------------------------------------------------------
+Input:  n = 46
+Output: true
+Explanation: We can reorder 46 → 64, which is 2^6.
+
+Input:  n = 10
+Output: false
+Explanation: Possible reorderings: 10, 01 (invalid, leading zero).
+None is a power of two.
+--------------------------------------------------------------------------------------
+Key Observations
+Two numbers are permutations of each other if and only if their sorted digits are identical.
+
+Powers of two grow quickly. For n ≤ 10^9, the largest power of two is 2^29 = 536,870,912.
+→ We only need to check powers from 2^0 to 2^29 (30 numbers total).
+
+Instead of generating all permutations (O(d!) complexity), we can:
+
+Sort the digits of n
+
+Sort the digits of every power of two
+
+Compare — if they match, a valid reorder exists
+___________________________________________________________________________________________
+
+Method Used — Sorted Digits Matching
+Steps:
+Convert n to a string and sort its digits.
+Example: 128 → "128"
+
+Precompute all powers of two up to 2^29.
+
+For each power of two:
+
+Convert it to a string
+
+Sort its digits
+
+Compare with sorted n
+
+If any match → return true; otherwise false.
+
+Why this works:
+Sorting rearranges digits into a canonical form.
+If two numbers have the same sorted string, they are permutations of each other.
+
+____________________________________________________________________________________________
+

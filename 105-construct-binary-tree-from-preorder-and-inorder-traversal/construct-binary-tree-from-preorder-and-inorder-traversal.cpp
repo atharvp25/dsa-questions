@@ -11,8 +11,8 @@
  */
 class Solution {
 public:
-    int search(vector<int>&inorder, int target){
-        for(int i=0;i<inorder.size();i++){
+    int search(vector<int>&inorder, int target, int left, int right){
+        for(int i=left;i<=right;i++){
             if(inorder[i]==target){
                 return i;
             }
@@ -24,7 +24,7 @@ public:
             return NULL;
         }
         TreeNode* root = new TreeNode(preorder[preIdx]);
-        int inIdx = search(inorder, preorder[preIdx]);
+        int inIdx = search(inorder, preorder[preIdx], left, right);
         preIdx++;
 
         root->left = tree(preorder, inorder, preIdx, left, inIdx-1);
